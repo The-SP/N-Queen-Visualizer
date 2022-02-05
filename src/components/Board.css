@@ -2,7 +2,8 @@
   margin-top: 1rem;
   width: fit-content;
   height: fit-content;
-  outline: solid 2px seagreen;
+  border: solid 4px seagreen;
+  box-shadow: rgb(38, 57, 77) 10px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .square {
