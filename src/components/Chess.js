@@ -6,6 +6,7 @@ import solvePuzzle from "./Algorithm";
 const Chess = () => {
   const [board, setBoard] = useState([]);
   const [boardSize, setBoardSize] = useState(8);
+  const [animation_speed, setAnimationSpeed] = useState(50);
 
   function resetBoard() {
     const squares = new Array(boardSize);
@@ -19,10 +20,20 @@ const Chess = () => {
 
   useEffect(resetBoard, [boardSize]);
 
-  function playAgain() {
+  function solveNQueen() {
     resetBoard();
-    let solution = solvePuzzle(board);
+    let solution = solvePuzzle(board)['finalBoard'];
     setBoard(solution);
+  }
+
+  function visulaize() {
+      resetBoard();
+      let results = solvePuzzle(board)['results'];
+      for (let i = 0; i < results.length; i++) {
+        setTimeout(() => {
+          setBoard(results[i]);
+        }, i * animation_speed);
+      }
   }
 
   return (
@@ -55,8 +66,11 @@ const Chess = () => {
         </div>
         {/* End of size input */}
 
-        <button className="btn btn-success mt-1" onClick={playAgain}>
+        <button className="btn btn-success mt-1" onClick={solveNQueen}>
           Solve
+        </button>
+        <button className="btn btn-dark mt-1" onClick={visulaize}>
+          Visualize
         </button>
       </div>
 

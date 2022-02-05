@@ -1,16 +1,22 @@
 import "./Board.css";
 
 const Board = ({ board }) => {
-  let squareBG = ["white-square", "dark-square"];
+  let squareBG = ["seagreen", "lavenderblush"];
 
   const squareSizeStyle = {
-      width: 400/board.length,
-      height: 400/board.length
+    width: 400 / board.length,
+    height: 400 / board.length,
+  };
+
+  function getColor(square) {
+    if (square.isActive && square.hasQueen) return "dodgerblue"; // queen placed animation
+    else if (square.isActive) return "yellow"; // traverse possible queen positions
+    else return squareBG[square.background];
   }
 
   const queenSizeStyle = {
-      fontSize: 250/board.length
-  }
+    fontSize: 250 / board.length,
+  };
 
   return (
     <>
@@ -27,13 +33,16 @@ const Board = ({ board }) => {
                 return (
                   <div
                     key={colIndex}
-                    style={squareSizeStyle}
-                    className={`square ${squareBG[col.background]}`}
+                    style={{ ...squareSizeStyle, backgroundColor: getColor(col) }}
+                    className="square"
                     id={`square-${rowIndex}-${colIndex}`}
                   >
                     {col.hasQueen && (
                       <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                        <i style={queenSizeStyle} class="fas fa-chess-queen text-danger"></i>
+                        <i
+                          style={queenSizeStyle}
+                          class="fas fa-chess-queen text-danger"
+                        ></i>
                       </div>
                     )}
                   </div>

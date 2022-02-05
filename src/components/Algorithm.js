@@ -1,5 +1,15 @@
 export default function solvePuzzle(board) {
   const N = board.length;
+  const results = [];
+
+  function saveAnimation(i, j, queen=false) {
+      // board.slice() doesn't work on nested array becz slice method DOES NOT make deep copy.
+      // It only copies the first layer of the array
+      const temp = JSON.parse(JSON.stringify(board))  // create copy of board
+      if (queen) temp[i][j].hasQueen = true; // place queen on current square
+      temp[i][j].isActive = true;
+      results.push(temp); // save animation
+  }
 
   function isSafe(row, col) {
     let i, j;
@@ -29,10 +39,13 @@ export default function solvePuzzle(board) {
     for (let i = 0; i < N; i++) {
     //   let row = options[i];
     let row = i;
+    saveAnimation(row, col);
       // Check if queen can be placed on board[i][col];
       if (isSafe(row, col)) {
         board[row][col].hasQueen = true; // Place queen;
-        console.log("Queen placed in", row, col);
+
+        saveAnimation(row, col, true);
+        // console.log("Queen placed in", row, col);
 
         // Recursion to place rest of queens
         if (placeQueen(col + 1)) return true;
@@ -48,5 +61,7 @@ export default function solvePuzzle(board) {
   if (placeQueen(0)) {
     console.log("Soln found!!");
   }
-  return board.slice();
+  const finalBoard = board.slice();
+  results.push(finalBoard.slice()); // push final result
+  return {finalBoard, results};
 }
