@@ -3,6 +3,15 @@ import "./Board.css";
 const Board = ({ board }) => {
   let squareBG = ["white-square", "dark-square"];
 
+  const squareSizeStyle = {
+      width: 400/board.length,
+      height: 400/board.length
+  }
+
+  const queenSizeStyle = {
+      fontSize: 250/board.length
+  }
+
   return (
     <>
       <link
@@ -18,12 +27,13 @@ const Board = ({ board }) => {
                 return (
                   <div
                     key={colIndex}
+                    style={squareSizeStyle}
                     className={`square ${squareBG[col.background]}`}
                     id={`square-${rowIndex}-${colIndex}`}
                   >
                     {col.hasQueen && (
-                      <div className="w-100 h-100 d-flex align-items-center">
-                        <i class="fas fa-chess-queen text-danger fa-lg"></i>
+                      <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                        <i style={queenSizeStyle} class="fas fa-chess-queen text-danger"></i>
                       </div>
                     )}
                   </div>
