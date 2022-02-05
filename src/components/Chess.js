@@ -11,14 +11,13 @@ const Chess = () => {
     const squares = new Array(boardSize);
     for (let i = 0; i < boardSize; i++) {
       let row = new Array(boardSize);
-      for (let j = 0; j < boardSize; j++)
-        row[j] = new Square(i, j);
+      for (let j = 0; j < boardSize; j++) row[j] = new Square(i, j);
       squares[i] = row;
     }
     setBoard(squares);
   }
 
-  useEffect(resetBoard, []);
+  useEffect(resetBoard, [boardSize]);
 
   function playAgain() {
     resetBoard();
@@ -34,21 +33,34 @@ const Chess = () => {
         </div>
       </nav>
 
-      {/* 
-        // Input fields
-        // - setSize
-        // - Solve/ Play button
-      */}
+      <div className="mt-1 text-center">
+        {/* Board size input */}
+        <div className="form-control m-auto" style={{ maxWidth: 300 }}>
+          <label htmlFor="customRange3" className="form-label">
+            <span className="text-primary">Size of Board: </span>
+            <span className="font-weight-bold text-success">
+              {`${boardSize} x ${boardSize}`}
+            </span>
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="4"
+            max="12"
+            step="1"
+            id="customRange3"
+            value={boardSize}
+            onChange={(e) => setBoardSize(e.target.value)}
+          />
+        </div>
+        {/* End of size input */}
+
+        <button className="btn btn-success mt-1" onClick={playAgain}>
+          Solve
+        </button>
+      </div>
 
       <Board board={board} />
-
-      <div className="play-again">
-        <button className="btn btn-lg btn-success" onClick={playAgain}>
-          Play again
-        </button>
-        <br />
-        (uses randomized backtracking, to find another solution)
-      </div>
     </>
   );
 };

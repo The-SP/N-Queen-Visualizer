@@ -1,5 +1,5 @@
 .main-board {
-  margin-top: 2rem;
+  margin-top: 1rem;
   width: fit-content;
   height: fit-content;
   outline: solid 2px seagreen;
@@ -16,12 +16,4 @@
 
 .dark-square {
   background: seagreen;
-}
-
-.play-again {
-  font-family: Verdana;
-  font-size: 0.8rem;
-  margin-top: 2rem;
-  margin-left: 50px;
-  color: midnightblue;
 }
