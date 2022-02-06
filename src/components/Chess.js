@@ -22,18 +22,18 @@ const Chess = () => {
 
   function solveNQueen() {
     resetBoard();
-    let solution = solvePuzzle(board)['finalBoard'];
+    let solution = solvePuzzle(board)["finalBoard"];
     setBoard(solution);
   }
 
   function visulaize() {
-      resetBoard();
-      let results = solvePuzzle(board)['results'];
-      for (let i = 0; i < results.length; i++) {
-        setTimeout(() => {
-          setBoard(results[i]);
-        }, i * animation_speed);
-      }
+    resetBoard();
+    let results = solvePuzzle(board)["results"];
+    for (let i = 0; i < results.length; i++) {
+      setTimeout(() => {
+        setBoard(results[i]);
+      }, i * animation_speed);
+    }
   }
 
   return (
@@ -44,10 +44,35 @@ const Chess = () => {
         </div>
       </nav>
 
-      <div className="mt-1 text-center">
+      <div className="d-flex justify-content-around align-items-center text-center">
+        {/* Reset board */}
+        <button className="btn btn-dark mx-auto" onClick={resetBoard}>
+          Clear
+        </button>
+
+        {/* Animation Delay input */}
+        <div className="form-control m-auto" style={{ maxWidth: 250 }}>
+          <label htmlFor="customRange1" className="form-label">
+            <span className="text-primary">Animation Delay: </span>
+            <span className="font-weight-bold text-success">
+              {`${animation_speed} ms`}
+            </span>
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="1"
+            max="1000"
+            step="1"
+            id="customRange1"
+            value={animation_speed}
+            onChange={(e) => setAnimationSpeed(e.target.value)}
+          />
+        </div>
+
         {/* Board size input */}
-        <div className="form-control m-auto" style={{ maxWidth: 300 }}>
-          <label htmlFor="customRange3" className="form-label">
+        <div className="form-control m-auto" style={{ maxWidth: 250 }}>
+          <label htmlFor="customRange2" className="form-label">
             <span className="text-primary">Size of Board: </span>
             <span className="font-weight-bold text-success">
               {`${boardSize} x ${boardSize}`}
@@ -59,22 +84,24 @@ const Chess = () => {
             min="4"
             max="12"
             step="1"
-            id="customRange3"
+            id="customRange2"
             value={boardSize}
             onChange={(e) => setBoardSize(e.target.value)}
           />
         </div>
-        {/* End of size input */}
 
-        <button className="btn btn-success mt-1" onClick={solveNQueen}>
+        <button className="btn btn-success mx-auto" onClick={solveNQueen}>
           Solve
         </button>
-        <button className="btn btn-dark mt-1" onClick={visulaize}>
+
+        <button className="btn btn-dark mx-auto" onClick={visulaize}>
           Visualize
         </button>
       </div>
 
-      <Board board={board} />
+      <div className="mt-4">
+        <Board board={board} />
+      </div>
     </>
   );
 };

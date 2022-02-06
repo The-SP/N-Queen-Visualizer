@@ -9,8 +9,10 @@ const Board = ({ board }) => {
   };
 
   function getColor(square) {
-    if (square.isActive && square.hasQueen) return "dodgerblue"; // queen placed animation
-    else if (square.isActive) return "yellow"; // traverse possible queen positions
+    if (square.isActive && square.hasQueen) return "dodgerblue";
+    // queen placed animation
+    else if (square.isActive) return "yellow";
+    // traverse possible queen positions
     else return squareBG[square.background];
   }
 
@@ -25,32 +27,30 @@ const Board = ({ board }) => {
         href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
       />
 
-      <div className="box mt-2">
-        <div className="container main-board">
-          {board.map((row, rowIndex) => (
-            <div key={rowIndex} className="row">
-              {row.map((col, colIndex) => {
-                return (
-                  <div
-                    key={colIndex}
-                    style={{ ...squareSizeStyle, backgroundColor: getColor(col) }}
-                    className="square"
-                    id={`square-${rowIndex}-${colIndex}`}
-                  >
-                    {col.hasQueen && (
-                      <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                        <i
-                          style={queenSizeStyle}
-                          class="fas fa-chess-queen text-danger"
-                        ></i>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
+      <div className="container main-board">
+        {board.map((row, rowIndex) => (
+          <div key={rowIndex} className="row">
+            {row.map((col, colIndex) => {
+              return (
+                <div
+                  key={colIndex}
+                  style={{ ...squareSizeStyle, backgroundColor: getColor(col) }}
+                  className="square"
+                  id={`square-${rowIndex}-${colIndex}`}
+                >
+                  {col.hasQueen && (
+                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                      <i
+                        style={queenSizeStyle}
+                        class="fas fa-chess-queen text-danger"
+                      ></i>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ))}
       </div>
     </>
   );
