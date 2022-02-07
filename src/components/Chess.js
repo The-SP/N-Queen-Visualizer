@@ -44,7 +44,7 @@ const Chess = () => {
         </div>
       </nav>
 
-      <div className="d-flex justify-content-around align-items-center text-center">
+      <div className="d-flex justify-content-around align-items-center text-center input-bar">
         {/* Reset board */}
         <button className="btn btn-dark mx-auto" onClick={resetBoard}>
           Clear

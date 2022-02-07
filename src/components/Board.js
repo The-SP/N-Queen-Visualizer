@@ -1,7 +1,7 @@
 import "./Board.css";
 
 const Board = ({ board }) => {
-  let squareBG = ["seagreen", "lavenderblush"];
+  let squareBG = ["lavenderblush", "seagreen"];
 
   const squareSizeStyle = {
     width: 400 / board.length,
@@ -11,7 +11,7 @@ const Board = ({ board }) => {
   function getColor(square) {
     if (square.isActive && square.hasQueen) return "dodgerblue";
     // queen placed animation
-    else if (square.isActive) return "yellow";
+    else if (square.isActive) return "orange";
     // traverse possible queen positions
     else return squareBG[square.background];
   }
