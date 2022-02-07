@@ -7,6 +7,7 @@ const Chess = () => {
   const [board, setBoard] = useState([]);
   const [boardSize, setBoardSize] = useState(8);
   const [animation_speed, setAnimationSpeed] = useState(50);
+  const [solutions, setSolutions] = useState(null); // {results, animations}
 
   function resetBoard() {
     const squares = new Array(boardSize);
@@ -16,22 +17,49 @@ const Chess = () => {
       squares[i] = row;
     }
     setBoard(squares);
+    setSolutions(null); // erase previous solution each time resetBoard is called
   }
 
   useEffect(resetBoard, [boardSize]);
 
+  function getRandomIndex(max) {
+    return Math.floor(Math.random() * (max + 1));
+  }
+
   function solveNQueen() {
-    resetBoard();
-    let solution = solvePuzzle(board)["finalBoard"];
-    setBoard(solution);
+    let results = [];
+    if (!solutions) {
+      const resultsAndAnimations = solvePuzzle(board);
+      setSolutions(resultsAndAnimations);
+
+      results = resultsAndAnimations["results"];
+      console.log("Possible Solutions:", results.length);
+    } else {
+      // if solution is already fetched
+      results = solutions["results"];
+    }
+    let finalBoard;
+    while (
+      (finalBoard = results[getRandomIndex(results.length - 1)]) === board
+    ); // generate different result every time
+    setBoard(finalBoard);
   }
 
   function visulaize() {
-    resetBoard();
-    let results = solvePuzzle(board)["results"];
-    for (let i = 0; i < results.length; i++) {
+    let animations = [];
+    if (!solutions) {
+      const resultsAndAnimations = solvePuzzle(board);
+      setSolutions(resultsAndAnimations);
+
+      animations = resultsAndAnimations["animations"];
+      console.log("Solution fetched!");
+    } else {
+      // if solution is already fetched
+      animations = solutions["animations"];
+    }
+    for (let i = 0; i < animations.length; i++) {
       setTimeout(() => {
-        setBoard(results[i]);
+        setBoard(animations[i]);
       }, i * animation_speed);
     }
   }
