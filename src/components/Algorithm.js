@@ -4,11 +4,10 @@ export default function solvePuzzle(board) {
   const animations = [];
   let isAnimationNeeded = true;
 
-  function saveAnimation(i, j, queen = false) {
-    // board.slice() doesn't work on nested array becz slice method DOES NOT make deep copy.
+  function saveAnimation(i, j) {
+    // board.slice() doesn't work on nested array becz slice method does not make deep copy.
     // It only copies the first layer of the array
     const temp = JSON.parse(JSON.stringify(board)); // create copy of board
-    if (queen) temp[i][j].hasQueen = true; // place queen on current square
     temp[i][j].isActive = true;
     animations.push(temp); // save animation
   }
@@ -45,14 +44,13 @@ export default function solvePuzzle(board) {
     let res = false;
     // Consider this col and try to place this queen in all row one by one
     for (let i = 0; i < N; i++) {
-      //   let row = options[i];
       let row = i;
       if (isAnimationNeeded) saveAnimation(row, col);
       // Check if queen can be placed on board[i][col];
       if (isSafe(row, col)) {
         board[row][col].hasQueen = true; // Place queen;
 
-        if (isAnimationNeeded) saveAnimation(row, col, true);
+        if (isAnimationNeeded) saveAnimation(row, col);
 
         // Recursion to place rest of queens
         res = placeQueen(col + 1);
@@ -65,7 +63,7 @@ export default function solvePuzzle(board) {
     // If queen can't be placed
     return res;
   }
-  if (placeQueen(0)) {
+  if (placeQueen(0)) { // But, here we are printing all solutions so final return will be false
     console.log("Soln found!!");
   }
   return { results, animations };

@@ -28,7 +28,7 @@ const Chess = () => {
 
   function solveNQueen() {
     let results = [];
-    if (!solutions) {
+    if (!solutions) { // no solutions
       const resultsAndAnimations = solvePuzzle(board);
       setSolutions(resultsAndAnimations);
 
@@ -47,12 +47,11 @@ const Chess = () => {
 
   function visulaize() {
     let animations = [];
-    if (!solutions) {
+    if (!solutions) { // no solutions
       const resultsAndAnimations = solvePuzzle(board);
       setSolutions(resultsAndAnimations);
 
       animations = resultsAndAnimations["animations"];
-      console.log("Solution fetched!");
     } else {
       // if solution is already fetched
       animations = solutions["animations"];
