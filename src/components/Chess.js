@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Chess.css";
 import Square from "./Square";
 import Board from "./Board";
 import solvePuzzle from "./Algorithm";
@@ -8,6 +9,13 @@ const Chess = () => {
   const [boardSize, setBoardSize] = useState(8);
   const [animation_speed, setAnimationSpeed] = useState(50);
   const [solutions, setSolutions] = useState(null); // {results, animations}
+
+  // Toggle theme
+  const [theme, setTheme] = useState("light");
+  function switchTheme() {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+  }
 
   function resetBoard() {
     const squares = new Array(boardSize);
@@ -28,7 +36,8 @@ const Chess = () => {
 
   function solveNQueen() {
     let results = [];
-    if (!solutions) { // no solutions
+    if (!solutions) {
+      // no solutions
       const resultsAndAnimations = solvePuzzle(board);
       setSolutions(resultsAndAnimations);
 
@@ -47,7 +56,8 @@ const Chess = () => {
 
   function visulaize() {
     let animations = [];
-    if (!solutions) { // no solutions
+    if (!solutions) {
+      // no solutions
       const resultsAndAnimations = solvePuzzle(board);
       setSolutions(resultsAndAnimations);
 
@@ -64,10 +74,21 @@ const Chess = () => {
   }
 
   return (
-    <>
-      <nav className="navbar navbar-dark bg-primary">
+    <div className="theme" data-theme={theme}>
+      <nav className="navbar navbar-dark">
         <div className="container-fluid">
           <span className="navbar-brand mb-0 h1">N-Queen</span>
+          {/* Toggle theme */}
+          <span
+            className="theme-icon text-warning h4 mb-0"
+            onClick={switchTheme}
+          >
+            {theme === "light" ? (
+              <i className="bi bi-moon-stars"></i>
+            ) : (
+              <i className="bi bi-brightness-high"></i>
+            )}
+          </span>
         </div>
       </nav>
 
@@ -129,7 +150,7 @@ const Chess = () => {
       <div className="mt-4">
         <Board board={board} />
       </div>
-    </>
+    </div>
   );
 };
 

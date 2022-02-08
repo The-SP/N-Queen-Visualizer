@@ -13,7 +13,7 @@ const Board = ({ board }) => {
 
   function getColor(square) {
     // queen placed animation
-    if (square.isActive && square.hasQueen) return "dodgerblue";
+    if (square.isActive && square.hasQueen) return "#6610f2";
     // traverse possible queen positions
     else if (square.isActive) return "orange";
     else return squareBG[square.background];

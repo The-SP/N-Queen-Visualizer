@@ -1,0 +1,38 @@
+/* For dark and light theme */
+:root {
+  --background: white;
+  --nav-background: #0d6efd;
+  --input-background: #eee;
+}
+
+body { 
+  /* hardcode for dark theme, css var not working, don't know why  */
+  background: linear-gradient(to right, #111, #043927, #111);
+}
+
+[data-theme="dark"] {
+  --background: linear-gradient(to right, #111, #043927, #111);
+  --nav-background: #043927;
+  --input-background: none;
+}
+
+.theme {
+  background-color: var(--background);
+  height: 100vh;
+}
+
+.theme-icon {
+  cursor: pointer;
+}
+
+.theme-icon :hover {
+  color: orangered;
+}
+
+.theme nav {
+  background: var(--nav-background);
+}
+
+.input-bar {
+  background: var(--input-background);
+}
