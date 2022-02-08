@@ -3,9 +3,11 @@
   --background: white;
   --nav-background: #0d6efd;
   --input-background: #eee;
+  --info-text: #0d6efd;
+  --shadow: 20px 16px 10px hsl(0deg 0% 0% / 0.25);
 }
 
-body { 
+body {
   /* hardcode for dark theme, css var not working, don't know why  */
   background: linear-gradient(to right, #111, #043927, #111);
 }
@@ -14,6 +16,8 @@ body {
   --background: linear-gradient(to right, #111, #043927, #111);
   --nav-background: #043927;
   --input-background: none;
+  --info-text: white;
+  --shadow: 0px -1px 5px green, 20px 16px 10px hsl(0deg 0% 0% / 0.25);
 }
 
 .theme {
@@ -35,4 +39,9 @@ body {
 
 .input-bar {
   background: var(--input-background);
+}
+
+.possible-solutions {
+  color: var(--info-text);
+  z-index: 1;
 }

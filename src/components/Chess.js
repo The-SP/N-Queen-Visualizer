@@ -150,6 +150,13 @@ const Chess = () => {
       <div className="mt-4">
         <Board board={board} />
       </div>
+      <div class="possible-solutions text-center mt-2">
+          {solutions && (
+            <span class="h4">
+              Possible solutions: {solutions["results"].length}
+            </span>
+          )}
+        </div>
     </div>
   );
 };

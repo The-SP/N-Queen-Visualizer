@@ -3,7 +3,7 @@
   width: fit-content;
   height: fit-content;
   border: solid 4px darkgreen;
-  box-shadow: rgb(38, 57, 77) 10px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: var(--shadow);
 }
 
 .square {
