@@ -34,6 +34,12 @@ const Chess = () => {
     return Math.floor(Math.random() * (max + 1));
   }
 
+  function toggleDisabled(disabledValue) {
+    let btnsAndInputs = document.querySelectorAll(".toggle-disabled"); // get all btns and input fields in input bar
+    for (let i = 0; i < btnsAndInputs.length; i++)
+      btnsAndInputs[i].disabled = disabledValue;
+  }
+
   function solveNQueen() {
     let results = [];
     if (!solutions) {
@@ -66,11 +72,16 @@ const Chess = () => {
       // if solution is already fetched
       animations = solutions["animations"];
     }
+    toggleDisabled(true); // disable all btns and input fields while animation is running
     for (let i = 0; i < animations.length; i++) {
       setTimeout(() => {
         setBoard(animations[i]);
       }, i * animation_speed);
     }
+    // enable all btns and input fields after animation is over
+    setTimeout(() => {
+      toggleDisabled(false);
+    }, animations.length * animation_speed);
   }
 
   return (
@@ -94,7 +105,10 @@ const Chess = () => {
 
       <div className="d-flex justify-content-around align-items-center text-center input-bar">
         {/* Reset board */}
-        <button className="btn btn-dark mx-auto" onClick={resetBoard}>
+        <button
+          className="btn btn-dark mx-auto toggle-disabled"
+          onClick={resetBoard}
+        >
           Clear
         </button>
 
@@ -108,7 +122,7 @@ const Chess = () => {
           </label>
           <input
             type="range"
-            className="form-range"
+            className="form-range toggle-disabled"
             min="1"
             max="1000"
             step="1"
@@ -128,7 +142,7 @@ const Chess = () => {
           </label>
           <input
             type="range"
-            className="form-range"
+            className="form-range toggle-disabled"
             min="4"
             max="12"
             step="1"
@@ -138,11 +152,17 @@ const Chess = () => {
           />
         </div>
 
-        <button className="btn btn-success mx-auto" onClick={solveNQueen}>
+        <button
+          className="btn btn-success mx-auto toggle-disabled"
+          onClick={solveNQueen}
+        >
           Solve
         </button>
 
-        <button className="btn btn-dark mx-auto" onClick={visulaize}>
+        <button
+          className="btn btn-dark mx-auto toggle-disabled"
+          onClick={visulaize}
+        >
           Visualize
         </button>
       </div>
@@ -151,12 +171,12 @@ const Chess = () => {
         <Board board={board} />
       </div>
       <div class="possible-solutions text-center mt-2">
-          {solutions && (
-            <span class="h4">
-              Possible solutions: {solutions["results"].length}
-            </span>
-          )}
-        </div>
+        {solutions && (
+          <span class="h4">
+            Possible solutions: {solutions["results"].length}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
