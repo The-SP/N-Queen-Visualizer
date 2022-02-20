@@ -48,7 +48,6 @@ const Chess = () => {
       setSolutions(resultsAndAnimations);
 
       results = resultsAndAnimations["results"];
-      console.log("Possible Solutions:", results.length);
     } else {
       // if solution is already fetched
       results = solutions["results"];
@@ -103,7 +102,7 @@ const Chess = () => {
         </div>
       </nav>
 
-      <div className="d-flex justify-content-around align-items-center text-center input-bar">
+      <div className="d-sm-flex p-1 justify-content-around align-items-center text-center input-bar">
         {/* Reset board */}
         <button
           className="btn btn-dark mx-auto toggle-disabled"
@@ -167,10 +166,10 @@ const Chess = () => {
         </button>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-sm-4">
         <Board board={board} />
       </div>
-      <div class="possible-solutions text-center mt-2">
+      <div class="possible-solutions text-center mt-sm-2">
         {solutions && (
           <span class="h4">
             Possible solutions: {solutions["results"].length}

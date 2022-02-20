@@ -3,12 +3,13 @@ import "./Board.css";
 const Board = ({ board }) => {
   let squareBG = ["lavenderblush", "seagreen"];
 
+  const totalWidth = (window.innerWidth > 425) ? 400 : (window.innerWidth-50);
   const squareSizeStyle = {
-    width: 400 / board.length,
-    height: 400 / board.length,
+    width: totalWidth / board.length,
+    height: totalWidth / board.length,
   };
   const queenSizeStyle = {
-    fontSize: 250 / board.length,
+    fontSize: (totalWidth/1.6) / board.length,
   };
 
   function getColor(square) {

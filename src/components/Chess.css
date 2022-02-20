@@ -41,6 +41,12 @@ body {
   background: var(--input-background);
 }
 
+@media (max-width: 576px) {
+    .input-bar>button, .input-bar>div {
+        margin: 5px 0;
+    }
+}
+
 .possible-solutions {
   color: var(--info-text);
   z-index: 1;
