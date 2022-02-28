@@ -11,7 +11,7 @@ const Chess = () => {
   const [solutions, setSolutions] = useState(null); // {results, animations}
 
   // Toggle theme
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   function switchTheme() {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -59,7 +59,7 @@ const Chess = () => {
     setBoard(finalBoard);
   }
 
-  function visulaize() {
+  function visualize() {
     let animations = [];
     if (!solutions) {
       // no solutions
@@ -152,15 +152,15 @@ const Chess = () => {
         </div>
 
         <button
-          className="btn btn-success mx-auto toggle-disabled"
+          className="btn btn-success mx-2 mx-sm-auto toggle-disabled"
           onClick={solveNQueen}
         >
           Solve
         </button>
 
         <button
-          className="btn btn-dark mx-auto toggle-disabled"
-          onClick={visulaize}
+          className="btn btn-dark mx-2 mx-sm-auto toggle-disabled"
+          onClick={visualize}
         >
           Visualize
         </button>
