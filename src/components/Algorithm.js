@@ -22,7 +22,7 @@ export default function solvePuzzle(board) {
     for (i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--)
       if (board[i][j].hasQueen) return false;
 
-    // Check lower diagonal on right side
+    // Check lower diagonal on left side
     for (i = row + 1, j = col - 1; j >= 0 && i < N; i++, j--)
       if (board[i][j].hasQueen) return false;
 
