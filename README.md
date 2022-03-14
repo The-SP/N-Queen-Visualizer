@@ -15,8 +15,8 @@ Visualization of N-Queens problem using React made as a part of Data Structure a
 To run this app locally, clone this repo and install the dependencies.
 
 ```bash
-git clone https://github.com/The-SP/Visualizer.git
-cd Visualizer
+git clone https://github.com/The-SP/N-Queen-Visualizer.git
+cd N-Queen-Visualizer
 npm install
 ```
 
